@@ -1,41 +1,52 @@
-﻿using System;
+﻿using Microsoft.Extensions.ObjectPool;
+using System;
 using System.Text;
 
 namespace Hardsoft.BruteForcer.Algorithms
 {
     public class DefaultBruteForceAlgorithm : IBruteForceAlgorithm
     {
-        public bool Start(int passwordCharacterLengthToTest, char[] charactersToTest, Func<string, bool> test)
+
+
+        public bool Start(
+            int passwordCharLengthToTest,
+            char[] charsToTest,
+            Func<string, bool> test,
+            Dictionary<int, char>? knownChars = null)
         {
-            var charactersLength = charactersToTest.Length;
+            var testPassword = new StringBuilder();
 
-            var passwordCharIndexes = new int[passwordCharacterLengthToTest];
+            int[] testPasswordCharIndexes = new int[passwordCharLengthToTest - (knownChars?.Count ?? 0)];
 
-            int indexOfFirstDigit = passwordCharIndexes.Length - 1;
+            int indexOfFirstDigit = testPasswordCharIndexes.Length - 1;
 
-            StringBuilder password = new StringBuilder();
+            int testCharsLength = charsToTest.Length;
 
-            while (passwordCharIndexes[0] < charactersLength)
+            while (testPasswordCharIndexes[0] < testCharsLength)
             {
-                password.Clear();
-                for (int i = 0; i < passwordCharIndexes.Length; i++)
+                testPassword.Clear();
+
+                for (int i = 0, x = 0; i < passwordCharLengthToTest; i++)
                 {
-                    password.Append(charactersToTest[passwordCharIndexes[i]]);
+                    if ((knownChars?.ContainsKey(i) ?? false))
+                        testPassword.Append(knownChars[i]);
+                    else
+                        testPassword.Append(charsToTest[testPasswordCharIndexes[x++]]);
                 }
 
-                var isMatched = test.Invoke(password.ToString());
+                var isMatched = test.Invoke(testPassword.ToString());
 
                 if (isMatched)
                     return true;
 
-                passwordCharIndexes[indexOfFirstDigit]++;
+                testPasswordCharIndexes[indexOfFirstDigit]++;
 
                 for (int i = indexOfFirstDigit; i > 0; i--)
                 {
-                    if (passwordCharIndexes[i] == charactersLength)
+                    if (testPasswordCharIndexes[i] == testCharsLength)
                     {
-                        passwordCharIndexes[i] = 0;
-                        passwordCharIndexes[i - 1]++;
+                        testPasswordCharIndexes[i] = 0;
+                        testPasswordCharIndexes[i - 1]++;
                     }
                 }
             }

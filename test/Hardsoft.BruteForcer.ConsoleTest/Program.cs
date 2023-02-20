@@ -10,8 +10,7 @@ var pass = "mM184";
 var defaultBruteForceAlgorithm = new BruteForcer(new DefaultBruteForceAlgorithm());
 
 var isMatched = defaultBruteForceAlgorithm.Start(
-    5,
-    5,
+    pass.Length,
     CharGroup.Numberic | CharGroup.Alpha,
     (testPass) =>
     {

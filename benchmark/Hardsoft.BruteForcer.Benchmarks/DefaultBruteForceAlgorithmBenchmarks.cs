@@ -1,4 +1,5 @@
 ﻿using BenchmarkDotNet.Attributes;
+using Hardsoft.BruteForcer.Algorithms;
 using Hardsoft.BruteForcer.Chars;
 
 namespace Hardsoft.BruteForcer.Benchmarks
@@ -7,10 +8,10 @@ namespace Hardsoft.BruteForcer.Benchmarks
     [SimpleJob(launchCount: 1, warmupCount: 1, iterationCount: 1)]
     //[SimpleJob(RuntimeMoniker.Net60)]
     //[SimpleJob(RuntimeMoniker.Net70)]
-    public class Benchmarks
+    public class DefaultBruteForceAlgorithmBenchmarks
     {
         string pass = string.Empty;
-        private BruteForcer bruteForcer = new BruteForcer();
+        private BruteForcer bruteForcer = new BruteForcer(new DefaultBruteForceAlgorithm());
 
         //[Params(3, 6)]
         //public int N;
@@ -18,16 +19,15 @@ namespace Hardsoft.BruteForcer.Benchmarks
         [GlobalSetup]
         public void GlobalSetup()
         {
-            pass = "99184";
+            pass = "184";
         }
 
         [Benchmark]
-        public void MyFirstBenchmarkMethod()
+        public void DefaultBruteForceAlgorithmBenchmark()
         {
             var isMatched = bruteForcer.Start(
-                3,
-                6,
-                CharGroup.All,
+                pass.Length,
+                CharGroup.Numberic | CharGroup.Alpha,
                 (testPass) =>
                 {
                     return testPass == pass;

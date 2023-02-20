@@ -22,10 +22,11 @@ namespace Hardsoft.BruteForcer
             char[] charactersToTest,
             Func<string, bool> test)
         {
-            return _bruteForceAlgorithm.Start(
-                passwordCharacterLengthToTest,
-                charactersToTest,
-                test);
+            throw new NotImplementedException();
+            //return _bruteForceAlgorithm.Start(
+            //    passwordCharacterLengthToTest,
+            //    charactersToTest,
+            //    test);
         }
 
         public bool Start(
@@ -33,10 +34,24 @@ namespace Hardsoft.BruteForcer
             CharGroup charGroup,
             Func<string, bool> test)
         {
+            //var passwords = _bruteForceAlgorithm.Start(
+            //    passwordCharacterLengthToTest,
+            //    CharSet.GetCharSet(charGroup),
+            //    test);
+
+            //foreach (var password in passwords)
+            //{
+            //    if (test.Invoke(password))
+            //        return true;
+            //}
+
+            //return false;
+
             return _bruteForceAlgorithm.Start(
                 passwordCharacterLengthToTest,
                 CharSet.GetCharSet(charGroup),
                 test);
+            //new Dictionary<int, char> { { 3, '9' }, { 0, '6' } });
         }
 
         public bool Start(

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AC8D2341-B008-4265-B500-9535E299DDBF}"
+	ProjectSection(SolutionItems) = preProject
+		benchmark\Hardsoft.BruteForcer.Benchmarks\SelectManyBruteForceAlgorithmBenchmarks.cs = benchmark\Hardsoft.BruteForcer.Benchmarks\SelectManyBruteForceAlgorithmBenchmarks.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{7D87FCD4-FB6C-4790-8DD5-3993DF535BFE}"
 EndProject
@@ -15,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hardsoft.BruteForcer.UnitTe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hardsoft.BruteForcer.Benchmarks", "benchmark\Hardsoft.BruteForcer.Benchmarks\Hardsoft.BruteForcer.Benchmarks.csproj", "{4E58A639-5D61-4E2B-81C0-22EEABEF5117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hardsoft.BruteForcer.ConsoleTest", "test\Hardsoft.BruteForcer.ConsoleTest\Hardsoft.BruteForcer.ConsoleTest.csproj", "{B01492A9-2AAE-4E72-BE41-93DFDC11F83C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hardsoft.BruteForcer.ConsoleTest", "test\Hardsoft.BruteForcer.ConsoleTest\Hardsoft.BruteForcer.ConsoleTest.csproj", "{B01492A9-2AAE-4E72-BE41-93DFDC11F83C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
